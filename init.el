@@ -12,6 +12,7 @@
 
 (package-initialize)
 
+
 ;; Make sure use-package is installed
 (if (not (package-installed-p 'use-package))
     (progn
@@ -22,6 +23,11 @@
 
 ;; Auto install packages that aren't installed
 (setq use-package-always-ensure t)
+
+;; Load theme
+(use-package zenburn-theme
+  :config
+  (load-theme 'zenburn t))
 
 ;; Disable splash screen
 (setq inhibit-splash-screen t)
