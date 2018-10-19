@@ -102,7 +102,7 @@
  '(ido-vertical-show-count t)
  '(package-selected-packages
    (quote
-    (ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
+    (magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -139,6 +139,8 @@
   :config
   (global-diff-hl-mode)
   (diff-hl-flydiff-mode))
+
+(use-package magit)
 
 (add-hook 'c-mode-common-hook
           (lambda()
