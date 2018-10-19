@@ -32,6 +32,10 @@
 ;; Disable splash screen
 (setq inhibit-splash-screen t)
 
+;; Disable menubar and toolbar
+(menu-bar-mode -1)
+(tool-bar-mode -1) 
+
 ;; Shows where the cursor is in the menu bar
 (setq column-number-mode t)
 
