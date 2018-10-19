@@ -128,6 +128,15 @@
 (use-package flycheck)
 (use-package yasnippet)
 
+(use-package diff-hl
+  :bind
+  ("C-x ä" . diff-hl-next-hunk)
+  ("C-x ö" . diff-hl-previous-hunk)
+  ("C-x å" . diff-hl-revert-hunk)
+  :config
+  (global-diff-hl-mode)
+  (diff-hl-flydiff-mode))
+
 (add-hook 'c-mode-common-hook
           (lambda()
             (progn
