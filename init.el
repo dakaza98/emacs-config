@@ -68,6 +68,12 @@
 (global-set-key (kbd "C-x |")  'split-window-horizontally)
 (global-set-key (kbd "C-x -")  'split-window-below)
 
+;; Rebind undo
+(global-set-key (kbd "C-z") 'undo)
+
+;; Duplicate a line
+(global-set-key "\C-d" "\C-a\C- \C-n\M-w\C-y \C-p")
+
 ;; Multiple cursors
 (use-package multiple-cursors
   :bind
@@ -75,9 +81,6 @@
   ("M-Ä" .  'mc/mark-previous-like-this-word)
   ("M-ä" .  'mc/mark-next-like-this-word)
   ("M-P" .  'mc/mark-more-like-this-extended))
-
-;; Rebind undo
-(global-set-key (kbd "C-z") 'undo)
 
 ;; Remove/kill completion buffer when done
 (add-hook 'minibuffer-exit-hook
