@@ -102,7 +102,7 @@
  '(ido-vertical-show-count t)
  '(package-selected-packages
    (quote
-    (magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
+    (smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -119,6 +119,13 @@
     (global-set-key (kbd "M-X") 'execute-extended-command)
     (smex-initialize)))
 
+;; Setup imenu
+(use-package idomenu
+  :config
+  (setq imenu-auto-rescan t)
+  :bind
+  (("M-i" . idomenu)))
+
 (use-package ido-vertical-mode
   :config
   (ido-vertical-mode))
@@ -130,6 +137,46 @@
 
 (use-package flycheck)
 (use-package yasnippet)
+
+(use-package swiper
+  :bind
+  ("C-s" . swiper)
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (ivy-mode 1))
+
+(use-package meghanada
+  :init
+  (cond
+   ((eq system-type 'windows-nt)
+    (setq meghanada-java-path (expand-file-name "bin/java.exe" (getenv "JAVA_HOME")))
+    (setq meghanada-maven-path "mvn.cmd"))
+   (t
+    (setq meghanada-java-path "java")
+    (setq meghanada-maven-path "mvn")))
+  :config
+  (add-hook 'java-mode-hook
+            (lambda ()
+              ;; meghanada-mode on
+              (meghanada-mode t)
+              (flycheck-mode t)
+              (setq c-basic-offset 2)
+              ;; use code format
+              (add-hook 'before-save-hook 'meghanada-code-beautify-before-save))))
+
+;; Deletes all whitespace before or after a character when pressing backspace or delete
+(use-package smart-hungry-delete
+  :bind (("<backspace>" . smart-hungry-delete-backward-char)
+		     ("<delete>" . smart-hungry-delete-forward-char))
+  :defer nil ;; dont defer so we can add our functions to hooks 
+  :config (smart-hungry-delete-add-default-hooks))
+
+;; Delets words like modern editors
+(use-package nv-delete-back
+  :bind
+  ("C-<backspace>" . nv-delete-back-all)
+  ("M-<backspace>" . nv-delete-back))
 
 (use-package diff-hl
   :bind
