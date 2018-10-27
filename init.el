@@ -138,6 +138,7 @@
 
 (use-package flycheck)
 (use-package yasnippet)
+(use-package yasnippet-snippets)
 
 (use-package swiper
   :bind
