@@ -108,6 +108,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(git-gutter-fr:added ((t (:foreground "green" :weight bold))))
  '(git-gutter-fr:modified ((t (:foreground "dodger blue" :weight bold)))))
 
 ;; Nice fuzzy matching for M-x
@@ -146,6 +147,7 @@
   (setq enable-recursive-minibuffers t)
   (ivy-mode 1))
 
+;; If the installation of the server does not work, download the setup from the projects github
 (use-package meghanada
   :init
   (cond
