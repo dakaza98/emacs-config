@@ -108,7 +108,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(git-gutter-fr:modified ((t (:foreground "dodger blue" :weight bold)))))
 
 ;; Nice fuzzy matching for M-x
 (use-package smex
@@ -178,14 +178,9 @@
   ("C-<backspace>" . nv-delete-back-all)
   ("M-<backspace>" . nv-delete-back))
 
-(use-package diff-hl
-  :bind
-  ("C-x ä" . diff-hl-next-hunk)
-  ("C-x ö" . diff-hl-previous-hunk)
-  ("C-x å" . diff-hl-revert-hunk)
+(use-package git-gutter-fringe
   :config
-  (global-diff-hl-mode)
-  (diff-hl-flydiff-mode))
+  (global-git-gutter-mode))
 
 (use-package magit)
 
