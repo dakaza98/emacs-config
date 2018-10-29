@@ -1,7 +1,7 @@
 ;; gnutls must be installed!
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-		    (not (gnutls-available-p))))
+		                (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
   ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
@@ -34,7 +34,7 @@
 
 ;; Disable menubar and toolbar
 (menu-bar-mode -1)
-(tool-bar-mode -1) 
+(tool-bar-mode -1)
 (electric-pair-mode)
 ;; Shows where the cursor is in the menu bar
 (setq column-number-mode t)
@@ -102,7 +102,7 @@
  '(ido-vertical-show-count t)
  '(package-selected-packages
    (quote
-    (git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
+    (format-all git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -148,6 +148,9 @@
   (setq enable-recursive-minibuffers t)
   (ivy-mode 1))
 
+;; Requires external programs to work. For java: clang-format. See the projects github page for which program is needed
+(use-package format-all)
+
 ;; If the installation of the server does not work, download the setup from the projects github
 (use-package meghanada
   :init
@@ -166,13 +169,13 @@
               (flycheck-mode t)
               (setq c-basic-offset 2)
               ;; use code format
-              (add-hook 'before-save-hook 'meghanada-code-beautify-before-save))))
+              (add-hook 'before-save-hook 'format-all-buffer))))
 
 ;; Deletes all whitespace before or after a character when pressing backspace or delete
 (use-package smart-hungry-delete
   :bind (("<backspace>" . smart-hungry-delete-backward-char)
 		     ("<delete>" . smart-hungry-delete-forward-char))
-  :defer nil ;; dont defer so we can add our functions to hooks 
+  :defer nil ;; dont defer so we can add our functions to hooks
   :config (smart-hungry-delete-add-default-hooks))
 
 ;; Delets words like modern editors
@@ -211,7 +214,7 @@
               ("C-c g c" . ggtags-create-tags)
               ("C-c g u" . ggtags-update-tags)
               ("C-c g d" . ggtags-find-definition))
-   :diminish ggtags-mode)
+  :diminish ggtags-mode)
 
 ;; Command for moving lines
 (use-package move-text
