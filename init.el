@@ -102,7 +102,7 @@
  '(ido-vertical-show-count t)
  '(package-selected-packages
    (quote
-    (git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
+    (smartparens git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -139,6 +139,9 @@
 (use-package flycheck)
 (use-package yasnippet)
 (use-package yasnippet-snippets)
+(use-package smartparens
+  :config
+  (smartparens-global-mode))
 
 (use-package swiper
   :bind
