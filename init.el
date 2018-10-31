@@ -72,7 +72,7 @@
 (global-set-key (kbd "C-z") 'undo)
 
 ;; Duplicate a line
-(global-set-key "\C-d" "\C-a\C- \C-n\M-w\C-y \C-p")
+(global-set-key (kbd "C-ö") "\C-a\C- \C-n\M-w\C-y \C-p")
 
 ;; Multiple cursors
 (use-package multiple-cursors
