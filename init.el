@@ -72,7 +72,7 @@
 (global-set-key (kbd "C-z") 'undo)
 
 ;; Duplicate a line
-(global-set-key (kbd "C-ö") "\C-a\C- \C-n\M-w\C-y \C-p")
+(global-set-key (kbd "C-ö") "\C-a\C- \C-n\M-w\C-y\C-p")
 
 ;; Multiple cursors
 (use-package multiple-cursors
@@ -102,7 +102,7 @@
  '(ido-vertical-show-count t)
  '(package-selected-packages
    (quote
-    (format-all git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
+    (eyebrowse format-all git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -130,6 +130,12 @@
 (use-package ido-vertical-mode
   :config
   (ido-vertical-mode))
+
+(use-package eyebrowse
+  :init
+  (setq eyebrowse-keymap-prefix "")
+  :config
+  (eyebrowse-mode t))
 
 (use-package company
   :config
