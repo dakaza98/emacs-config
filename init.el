@@ -154,9 +154,6 @@
   (setq enable-recursive-minibuffers t)
   (ivy-mode 1))
 
-;; Requires external programs to work. For java: clang-format. See the projects github page for which program is needed
-(use-package format-all)
-
 ;; If the installation of the server does not work, download the setup from the projects github
 (use-package meghanada
   :init
@@ -173,9 +170,7 @@
               ;; meghanada-mode on
               (meghanada-mode t)
               (flycheck-mode t)
-              (setq c-basic-offset 2)
-              ;; use code format
-              (add-hook 'before-save-hook 'format-all-buffer))))
+              (setq c-basic-offset 2))))
 
 ;; Deletes all whitespace before or after a character when pressing backspace or delete
 (use-package smart-hungry-delete
