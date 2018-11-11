@@ -170,7 +170,9 @@
               ;; meghanada-mode on
               (meghanada-mode t)
               (flycheck-mode t)
-              (setq c-basic-offset 2))))
+              (company-mode t)
+              (setq c-basic-offset 2)
+              (add-hook 'before-save-hook 'delete-trailing-whitespace))))
 
 ;; Deletes all whitespace before or after a character when pressing backspace or delete
 (use-package smart-hungry-delete
