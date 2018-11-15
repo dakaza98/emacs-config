@@ -207,13 +207,6 @@
               (setq c-basic-offset 2)
               (add-hook 'before-save-hook 'delete-trailing-whitespace))))
 
-;; Deletes all whitespace before or after a character when pressing backspace or delete
-(use-package smart-hungry-delete
-  :bind (("<backspace>" . smart-hungry-delete-backward-char)
-		     ("<delete>" . smart-hungry-delete-forward-char))
-  :defer nil ;; dont defer so we can add our functions to hooks
-  :config (smart-hungry-delete-add-default-hooks))
-
 ;; Delets words like modern editors
 (use-package nv-delete-back
   :bind
