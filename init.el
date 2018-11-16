@@ -102,6 +102,9 @@
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(fci-rule-color "#383838")
+ '(flycheck-checkers
+   (quote
+    (meghanada meghanada-live ada-gnat asciidoctor asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cwl d-dmd dockerfile-hadolint emacs-lisp emacs-lisp-checkdoc erlang-rebar3 erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-megacheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli markdown-mdl nix perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator vhdl-ghdl xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby)))
  '(gdb-many-windows t)
  '(gdb-show-main t)
  '(ido-everywhere t)
@@ -113,7 +116,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (eyebrowse format-all git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode)))
+    (company-auctex auctex tex eyebrowse format-all git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode)))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
    (quote
@@ -255,3 +258,21 @@
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
                  (concat user-emacs-directory "file-backups")))))
+
+(defun latex/buildOnSave ()
+  ;; (interactive)
+  (when (eq major-mode 'latex-mode) (TeX-command "LaTeX" 'TeX-master-file -1)))
+
+(use-package auctex
+  :no-require t)
+
+(use-package tex
+  :ensure nil
+  :config
+  (add-hook 'after-save-hook 'latex/buildOnSave))
+
+(use-package company-auctex
+  :config
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (company-mode t))))
