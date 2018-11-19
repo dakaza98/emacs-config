@@ -248,6 +248,13 @@
               ("C-c g d" . ggtags-find-definition))
   :diminish ggtags-mode)
 
+(defun find-user-init-file ()
+  "Edit the `user-init-file', in another window."
+  (interactive)
+  (find-file-other-window user-init-file))
+
+(global-set-key (kbd "C-c i") #'find-user-init-file)
+
 ;; Command for moving lines
 (use-package move-text
   :bind
