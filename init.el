@@ -285,6 +285,10 @@
   :config
   (add-hook 'after-save-hook 'latex/buildOnSave))
 
+(use-package flyspell
+  :config
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode))
+
 (use-package company-auctex
   :config
   (add-hook 'LaTeX-mode-hook
