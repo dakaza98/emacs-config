@@ -116,7 +116,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (company-auctex auctex tex eyebrowse format-all git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode)))
+    (rainbow-delimiters company-auctex auctex tex eyebrowse format-all git-gutter-fringe nv-delete-back smart-hungry-delete meghanada swiper idomenu magit ggtags move-text yasnippet flycheck company-c-headers company ido-vertical-mode smex sml-mode)))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
    (quote
@@ -265,6 +265,13 @@
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
                  (concat user-emacs-directory "file-backups")))))
+
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'Emacs-Lisp-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'java-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'c-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'LaTeX-mode-hook #'rainbow-delimiters-mode))
 
 (defun latex/buildOnSave ()
   ;; (interactive)
