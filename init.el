@@ -229,6 +229,14 @@
               (flycheck-mode t)
               )))
 
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (let* ((file (concat user-emacs-directory "emacs-c-astyle-config")))
+              (if (file-exists-p (concat file ".el"))
+                  (progn 
+                    (load file)
+                    (add-hook 'after-save-hook 'astyle-after-save))))))
+
 ;; Completes includes for c
 (use-package company-c-headers
   :config
@@ -268,10 +276,10 @@
 
 (use-package rainbow-delimiters
   :config
-  (add-hook 'Emacs-Lisp-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'java-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'c-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'LaTeX-mode-hook #'rainbow-delimiters-mode))
+  (add-hook 'Emacs-Lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'java-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'c-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode))
 
 (defun latex/buildOnSave ()
   ;; (interactive)
